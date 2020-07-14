@@ -20,8 +20,8 @@ void process_factor(int n, map<int, int>& primes) {
   while (it != primes.end() && n != 1) {
     if (n % it->first == 0) {
       it->second++;
-	    n /= it->first;
-	    it = primes.begin();
+      n /= it->first;
+      it = primes.begin();
       continue;
     }
     it++;
