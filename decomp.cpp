@@ -13,7 +13,7 @@ using std::endl;
 using std::stoi;
 using std::atoi;
 
-const char *ERROR = "Wrong arguments!\nThe programm takes 1 positive integer.";
+const char *ERROR = "Wrong arguments!\nThe program takes 1 positive integer.\n";
 
 void process_factor(int n, map<int, int>& primes) {
   auto it = primes.begin();
@@ -55,13 +55,13 @@ string decompose(int n)
 int main(int argc, char **argv)
 {
   if (argc != 2) {
-    cerr << "Wrong command line arguments\nProgramm takes only positive int";
+    cerr << ERROR;
     return 1;
   }
   string input = argv[1];
   int n = atoi(input.c_str());
   if (n == 0 && argv[1][0] != '0') {
-    cerr << "Not a positive number";
+    cerr << ERROR;
     return 1;
   }
   cout << decompose(n) << endl;
