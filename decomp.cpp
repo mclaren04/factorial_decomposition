@@ -15,6 +15,30 @@ using std::atoi;
 
 const char *ERROR = "Wrong arguments!\nThe program takes 1 positive integer.\n";
 
+void process_factor(int, map<int, int>&);
+string to_string(const map<int, int>&);
+string decompose(int);
+
+int main(int argc, char **argv)
+{
+  if (argc != 2) {
+    cerr << ERROR;
+    return 1;
+  }
+  string input = argv[1];
+  int n = atoi(input.c_str());
+  if ((n == 0 && argv[1][0] != '0') || n < 0) {
+    cerr << ERROR;
+    return 1;
+  }
+  if (n == 0 || n == 1) {
+    cout << "1" << endl;
+  } else { 
+    cout << decompose(n) << endl;
+  }
+  return 0;
+}
+
 void process_factor(int n, map<int, int>& primes) {
   auto it = primes.begin();
   while (it != primes.end() && n != 1) {
@@ -31,7 +55,7 @@ void process_factor(int n, map<int, int>& primes) {
   }
 }
 
-string to_string(map<int, int>& primes) {
+string to_string(const map<int, int>& primes) {
   string result = "";
   string aux = "";
   for (auto it = primes.begin(); it != primes.end(); it++) {
@@ -52,17 +76,3 @@ string decompose(int n)
   return to_string(primes);
 }
 
-int main(int argc, char **argv)
-{
-  if (argc != 2) {
-    cerr << ERROR;
-    return 1;
-  }
-  string input = argv[1];
-  int n = atoi(input.c_str());
-  if (n == 0 && argv[1][0] != '0') {
-    cerr << ERROR;
-    return 1;
-  }
-  cout << decompose(n) << endl;
-}
